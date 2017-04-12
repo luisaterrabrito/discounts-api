@@ -1,0 +1,14 @@
+discount:
+    path: /discount
+    defaults:  { _controller: order_controller:discountAction }
+    methods: [POST]
+
+customers:
+    path: /customers
+    defaults:  { _controller: customer_controller:createCustomerAction }
+    methods: [POST]
+
+products:
+    path: /products
+    defaults:  { _controller: product_controller:createProductAction }
+    methods: [POST]
