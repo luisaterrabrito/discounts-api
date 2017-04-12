@@ -44,7 +44,6 @@ class ProductCategorySwitches implements DiscountInterface
         foreach ($order['items'] as $item) {
             $product = $this->entityManager->getRepository('AppBundle:Product')->findOneById($item['product-id']);
             if ($product && $product->getCategory() == 2 && $item['quantity'] >= 5) {
-                var_dump($item['quantity'] % 5);
                 if ($item['quantity'] % 5 !== 0) {
                     $switches = floor($item['quantity'] / 5);
                     $total = $total - ($switches * $product->getPrice());
