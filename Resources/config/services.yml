@@ -1,0 +1,37 @@
+services:
+    discount_service:
+        class: AppBundle\Services\DiscountService
+        arguments: ["@customer_revenue_service", "@product_category_tools_service", "@product_category_switches_service"]
+
+    customer_service:
+        class: AppBundle\Services\CustomerService
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    product_service:
+        class: AppBundle\Services\ProductService
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    customer_revenue_service:
+        class: AppBundle\Discount\CustomerRevenue
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    product_category_switches_service:
+        class: AppBundle\Discount\ProductCategorySwitches
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    product_category_tools_service:
+        class: AppBundle\Discount\ProductCategoryTools
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    # Contollers
+    order_controller:
+        class: AppBundle\Controller\OrderController
+        arguments: ["@discount_service"]
+
+    customer_controller:
+        class: AppBundle\Controller\CustomerController
+        arguments: ["@customer_service"]
+
+    product_controller:
+        class: AppBundle\Controller\ProductController
+        arguments: ["@product_service"]
